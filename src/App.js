@@ -130,7 +130,7 @@ function App() {
                 label="Target Currency"
               />
             </div>
-            <p style={{ color: '#011d1f', marginTop: '46px' }}>
+            <p style={{ color: '#011d1f', marginTop: '45px' }}>
               The date for: {date}
             </p>
           </div>
