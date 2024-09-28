@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { IconButton } from '@mui/material';
+import SwapCallsIcon from '@mui/icons-material/SwapCalls';
 import exchangerateApi from './utils/api';
 import Loader from './components/Loader/Loader';
 import Input from './components/Input/Input';
@@ -16,8 +19,18 @@ function App() {
   const [targetCurrency, setTargetCurrency] = useState('EUR');
   const [exchangeRate, setExchangeRate] = useState(1);
 
+  const [date, setDate] = useState('');
   //
-
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: '#006064',
+      },
+      secondary: {
+        main: '#ff5252',
+      },
+    },
+  });
   const getInitialData = async () => {
     setLoading(true);
     try {
@@ -38,6 +51,8 @@ function App() {
       });
       setExchangeRate(data.conversion_rate);
       setTargetAmount((baseAmount * data.conversion_rate).toFixed(2));
+
+      setDate(data.time_last_update_utc);
     }
   };
 
@@ -53,48 +68,75 @@ function App() {
     setBaseAmount((value / exchangeRate).toFixed(2));
   };
 
-  // Effects
+  const handleSwapCurrency = () => {
+    const newTargetCurrency = baseCurrency;
 
+    setBaseCurrency(targetCurrency);
+    setTargetCurrency(newTargetCurrency);
+
+    getExchangeRate();
+  };
+
+  // Effects
   useEffect(() => {
     getInitialData();
+  }, []);
+  useEffect(() => {
     getExchangeRate();
     // eslint-disable-next-line
   }, [baseCurrency, targetCurrency]);
 
   return (
-    <div className="App">
-      {loading ? (
-        <Loader />
-      ) : (
-        <form className="form">
-          <CurrencySelect
-            value={baseCurrency}
-            setCurrency={setBaseCurrency}
-            codes={codes}
-            label="Base Currency"
-          />
-
-          <Input
-            value={baseAmount}
-            onChange={handleBaseAmountChange}
-            placeholder="Enter amount in base currency"
-          />
-
-          <CurrencySelect
-            value={targetCurrency}
-            setCurrency={setTargetCurrency}
-            codes={codes}
-            label="Target Currency"
-          />
-
-          <Input
-            value={targetAmount}
-            onChange={handleTargetAmountChange}
-            placeholder="Enter amount in target currency"
-          />
-        </form>
-      )}
-    </div>
+    <ThemeProvider theme={theme}>
+      <div className="App">
+        {loading ? (
+          <Loader />
+        ) : (
+          <div className="section">
+            <div className="section-part">
+              <Input
+                value={baseAmount}
+                onChange={handleBaseAmountChange}
+                placeholder="Enter amount in base currency"
+              />
+              <CurrencySelect
+                value={baseCurrency}
+                setCurrency={setBaseCurrency}
+                codes={codes}
+                label="Base Currency"
+              />
+            </div>
+            <div
+              style={{
+                width: '150px',
+                display: 'flex',
+                justifyContent: 'center',
+              }}
+            >
+              <IconButton color="succes" onClick={handleSwapCurrency}>
+                <SwapCallsIcon />
+              </IconButton>
+            </div>
+            <div className="section-part">
+              <Input
+                value={targetAmount}
+                onChange={handleTargetAmountChange}
+                placeholder="Enter amount in target currency"
+              />
+              <CurrencySelect
+                value={targetCurrency}
+                setCurrency={setTargetCurrency}
+                codes={codes}
+                label="Target Currency"
+              />
+            </div>
+            <p style={{ color: '#011d1f', marginTop: '46px' }}>
+              The date for: {date}
+            </p>
+          </div>
+        )}
+      </div>
+    </ThemeProvider>
   );
 }
 export default App;

@@ -2,15 +2,21 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #0a8596;
+  background-color: #337f83;
   height: 100vh;
   justify-content: center;
 }
 
-.form {
+.section {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.section-part {
+  display: flex;
+  align-items: flex-end;
 }
 
 .submit {

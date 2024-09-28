@@ -1,4 +1,5 @@
 import React from 'react';
+import { TextField } from '@mui/material';
 
 export default function Input({ value, placeholder, onChange }) {
   const handleInputChange = (evt) => {
@@ -8,14 +9,19 @@ export default function Input({ value, placeholder, onChange }) {
       onChange(inputValue);
     }
   };
-
   return (
-    <div>
-      <input
+    <div style={{ color: 'red' }}>
+      <TextField
+        variant="outlined"
         type="text"
         value={value}
         onChange={handleInputChange}
         placeholder={placeholder}
+        sx={{
+          input: {
+            color: '#011d1f',
+          },
+        }}
       />
     </div>
   );
