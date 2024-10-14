@@ -88,75 +88,80 @@ function App() {
   }, [baseCurrency, targetCurrency]);
 
   return (
-    <>
-      <Helmet>
-        <meta
-          name="description"
-          content="Конвертер валют для получения актуальных курсов валют"
-        />
-        <meta property="og:title" content="Currency Converter" />
-        <meta
-          property="og:description"
-          content="Конвертер валют для получения актуальных курсов валют"
-        />
-        <meta property="og:image" content="%PUBLIC_URL%/logo192.png" />
-        <meta
-          property="og:url"
-          content="https://mrphysix.github.io/currency-converter"
-        />
-        <meta property="og:type" content="website" />
-      </Helmet>
-      <ThemeProvider theme={theme}>
-        <div className="App">
-          {loading ? (
-            <Loader />
-          ) : (
-            <div className="section">
-              <div className="section-part">
-                <Input
-                  value={baseAmount}
-                  onChange={handleBaseAmountChange}
-                  placeholder="Enter amount in base currency"
-                />
-                <CurrencySelect
-                  value={baseCurrency}
-                  setCurrency={setBaseCurrency}
-                  codes={codes}
-                  label="Base Currency"
-                />
-              </div>
-              <div
-                style={{
-                  width: '150px',
-                  display: 'flex',
-                  justifyContent: 'center',
-                }}
-              >
-                <IconButton color="succes" onClick={handleSwapCurrency}>
-                  <SwapCallsIcon />
-                </IconButton>
-              </div>
-              <div className="section-part">
-                <Input
-                  value={targetAmount}
-                  onChange={handleTargetAmountChange}
-                  placeholder="Enter amount in target currency"
-                />
-                <CurrencySelect
-                  value={targetCurrency}
-                  setCurrency={setTargetCurrency}
-                  codes={codes}
-                  label="Target Currency"
-                />
-              </div>
-              <p style={{ color: '#483d8b', marginTop: '45px' }}>
-                The date for: {date}
-              </p>
+    <ThemeProvider theme={theme}>
+      <div className="App">
+        <>
+          <Helmet>
+            <meta
+              name="description"
+              content="Конвертер валют для получения актуальных курсов валют"
+            />
+            <meta property="og:title" content="Currency Converter" />
+            <meta
+              property="og:description"
+              content="Конвертер валют для получения актуальных курсов валют"
+            />
+            <meta property="og:image" content="%PUBLIC_URL%/logo192.png" />
+            <meta
+              property="og:url"
+              content="https://mrphysix.github.io/currency-converter/"
+            />
+            <meta name="twitter:title" content="Currency Converter" />
+            <meta
+              name="twitter:description"
+              content="Конвертер валют для получения актуальных курсов валют"
+            />
+            <meta name="twitter:image" content="%PUBLIC_URL%/logo192.png" />
+          </Helmet>
+        </>
+        {loading ? (
+          <Loader />
+        ) : (
+          <div className="section">
+            <div className="section-part">
+              <Input
+                value={baseAmount}
+                onChange={handleBaseAmountChange}
+                placeholder="Enter amount in base currency"
+              />
+              <CurrencySelect
+                value={baseCurrency}
+                setCurrency={setBaseCurrency}
+                codes={codes}
+                label="Base Currency"
+              />
             </div>
-          )}
-        </div>
-      </ThemeProvider>
-    </>
+            <div
+              style={{
+                width: '150px',
+                display: 'flex',
+                justifyContent: 'center',
+              }}
+            >
+              <IconButton color="succes" onClick={handleSwapCurrency}>
+                <SwapCallsIcon />
+              </IconButton>
+            </div>
+            <div className="section-part">
+              <Input
+                value={targetAmount}
+                onChange={handleTargetAmountChange}
+                placeholder="Enter amount in target currency"
+              />
+              <CurrencySelect
+                value={targetCurrency}
+                setCurrency={setTargetCurrency}
+                codes={codes}
+                label="Target Currency"
+              />
+            </div>
+            <p style={{ color: '#483d8b', marginTop: '45px' }}>
+              The date for: {date}
+            </p>
+          </div>
+        )}
+      </div>
+    </ThemeProvider>
   );
 }
 export default App;
