@@ -16,7 +16,7 @@ export default function CurrencySelect({ value, setCurrency, codes, label }) {
     <FormControl>
       <InputLabel id="input-label">{label}</InputLabel>
       <Select
-        style={{ width: '150px', color: '#011d1f' }}
+        style={{ width: '150px', color: '#483d8b' }}
         labelId="input-label"
         label={label}
         value={value}
@@ -34,23 +34,23 @@ export default function CurrencySelect({ value, setCurrency, codes, label }) {
           PaperProps: {
             style: {
               maxHeight: 150,
-              backgroundColor: '#006064',
+              backgroundColor: '#C0C0C0',
             },
             sx: {
               '::-webkit-scrollbar': {
                 width: '10px',
-                backgroundColor: '#004346',
+                backgroundColor: '#483d8b',
               },
               '::-webkit-scrollbar-thumb': {
-                backgroundColor: '#006064',
+                backgroundColor: '#483d8b',
                 borderRadius: '1px',
                 margin: '2px',
               },
               '::-webkit-scrollbar-thumb:hover': {
-                backgroundColor: '#337f83',
+                backgroundColor: '#483d8b',
               },
               '::-webkit-scrollbar-track': {
-                backgroundColor: '#004346',
+                backgroundColor: '#A9A9A9',
               },
             },
           },

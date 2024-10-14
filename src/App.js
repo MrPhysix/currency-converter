@@ -24,7 +24,7 @@ function App() {
   const theme = createTheme({
     palette: {
       primary: {
-        main: '#006064',
+        main: '#483d8b',
       },
       secondary: {
         main: '#ff5252',
@@ -130,7 +130,7 @@ function App() {
                 label="Target Currency"
               />
             </div>
-            <p style={{ color: '#011d1f', marginTop: '45px' }}>
+            <p style={{ color: '#483d8b', marginTop: '45px' }}>
               The date for: {date}
             </p>
           </div>

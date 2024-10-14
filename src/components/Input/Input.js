@@ -11,7 +11,7 @@ export default function Input({ value, placeholder, onChange }) {
     }
   };
   return (
-    <div style={{ color: 'red' }}>
+    <div style={{ color: '#483d8b' }}>
       <TextField
         variant="outlined"
         type="text"
@@ -20,7 +20,8 @@ export default function Input({ value, placeholder, onChange }) {
         placeholder={placeholder}
         sx={{
           input: {
-            color: '#011d1f',
+            color: '#483d8b',
+            fontWeight: 'bold',
           },
         }}
       />
