@@ -1,6 +1,6 @@
 const config = {
   baseUrl: 'https://v6.exchangerate-api.com/v6',
-  apiKey: '52b054a642f1e64fea343c4f',
+  apiKey: process.env.REACT_APP_API_KEY,
 };
 
 class Api {
@@ -8,7 +8,6 @@ class Api {
     this._url = baseUrl;
     this._key = apiKey;
   }
-
   _checkResult = (res) => {
     if (res.ok) {
       return res.json();
